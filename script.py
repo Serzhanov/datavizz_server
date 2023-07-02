@@ -2,11 +2,6 @@ import numpy as np
 import pandas as pd
 
 
-
-def setDateFormat(df):
-    # Define the date format
-    df['Date'] = pd.to_datetime(df['Date'],format='%b %d, %Y')
-
 def refactorDF(df):
     df = df.dropna()
     df = df.drop_duplicates()
@@ -18,7 +13,13 @@ def refactorDF(df):
     df['Price']=df['Price'].apply(convert_to_float)
     df['High']=df['High'].apply(convert_to_float)
     df['Low']=df['Low'].apply(convert_to_float)
-    
+
+    # Convert 'Date' column to datetime type
+    df['Date'] = pd.to_datetime(df['Date'])
+     # Add columns for year and month
+    df['Year'] = df['Date'].dt.year
+    df['Month'] = df['Date'].dt.month
+
     return df
 
 # Define the conversion function
