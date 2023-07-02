@@ -2,17 +2,12 @@ from flask import Flask
 import pandas as pd
 from flask import request
 from flask_cors import CORS
-from script import cleanUpDataframe 
+from script import refactorDF 
 import json
 
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
-
-@app.route('/')
-def hello():
-    return 'Hello, Flask!'
-
 
 
 @app.route('/upload', methods=['POST'])
@@ -21,9 +16,7 @@ def upload():
 
     # Read the CSV file into a Pandas DataFrame
     df = pd.read_csv(file)
-    df=cleanUpDataframe(df)
-    # Perform any desired operations on the DataFrame
-    # ...
+    df=refactorDF(df)
     
     # Convert DataFrame to JSON object
     json_data = df.to_json(orient='records')#gives me a string

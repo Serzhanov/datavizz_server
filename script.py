@@ -8,7 +8,7 @@ def setDateFormat(df):
     # Define the date format
     df['Date'] = pd.to_datetime(df['Date'],format='%b %d, %Y')
 
-def cleanUpDataframe(df):
+def refactorDF(df):
     df = df.dropna()
     df = df.drop_duplicates()
 
