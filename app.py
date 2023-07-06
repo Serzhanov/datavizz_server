@@ -26,6 +26,9 @@ def upload():
     # Return the JSON response
     return json_object
 
+@app.route('/')
+def home():
+    return 'HOME'
 
 if __name__ == '__main__':
     app.run()
